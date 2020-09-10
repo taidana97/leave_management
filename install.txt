@@ -1,0 +1,22 @@
+add-migration AddedEmployeeDataPoints
+
+automapper
+
+services.AddAutoMapper(typeof(Maps)); -> startup.cs
+
+public Maps() -> Mappings/Maps.cs
+{
+CreateMap<LeaveType, LeaveTypeVM>().ReverseMap();
+CreateMap<LeaveHistory, LeaveHistoryVM>().ReverseMap();
+CreateMap<LeaveAllocation, LeaveAllocationVM>().ReverseMap();
+CreateMap<Employee, EmployeeVM>().ReverseMap();
+}
+
+ private readonly ILeaveTypeRepository _repo; -> LeaveTypesController.cs
+ private readonly IMapper _mapper;
+
+        public LeaveTypesController(ILeaveTypeRepository repo,IMapper mapper)
+        {
+            _repo = repo;
+            _mapper = mapper;
+        }
